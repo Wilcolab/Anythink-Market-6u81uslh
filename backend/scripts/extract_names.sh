@@ -13,8 +13,9 @@ input_file="$1"
 output_file="output_names.txt"
 
 # Extract first and last names from the second and third columns
+# Print only if the email contains "amazon.com"
 # Assumes the first row contains column names
-awk -F',' 'NR>1 {print $3, $2}' "$input_file" > "$output_file"
+awk -F',' 'NR>1 && $4 ~ /amazon.com/ {print $3, $2}' "$input_file" > "$output_file"
 
 # Count the number of lines in the output file
 num_lines=$(wc -l < "$output_file")
