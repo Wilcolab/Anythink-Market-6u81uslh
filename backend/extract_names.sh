@@ -10,7 +10,7 @@ fi
 input_file="$1"
 
 # Output file
-output_file="output_names.txt"
+output_file="./output_names.txt"
 
 # Extract last names from the second column and first names from the third column
 # Assumes the first row contains column names
