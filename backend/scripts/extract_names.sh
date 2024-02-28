@@ -10,10 +10,21 @@ fi
 input_file="$1"
 
 # Output file
-output_file="./output_names.txt"
+output_file="output_names.txt"
 
-# Extract last names from the second column and first names from the third column
+# Extract first and last names from the second and third columns
 # Assumes the first row contains column names
 awk -F',' 'NR>1 {print $3, $2}' "$input_file" > "$output_file"
+
+# Count the number of lines in the output file
+num_lines=$(wc -l < "$output_file")
+
+# Check if the number of lines is correct (should be 1 less than total lines in input file)
+expected_lines=$(( $(wc -l < "$input_file") - 1 ))
+
+if [ "$num_lines" -ne "$expected_lines" ]; then
+    echo "Error: Incorrect number of users found in the input"
+    exit 1
+fi
 
 echo "Names extracted from $input_file and saved to $output_file"
