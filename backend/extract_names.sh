@@ -14,6 +14,6 @@ output_file="output.txt"
 
 # Extract last names from the second column and first names from the third column
 # Assumes the first row contains column names
-awk -F',' 'NR>1 {print $2, $3}' "$input_file" > "$output_file"
+awk -F',' 'NR>1 {print $3, $2}' "$input_file" > "$output_file"
 
 echo "Names extracted from $input_file and saved to $output_file"
